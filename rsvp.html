@@ -120,9 +120,12 @@
         params.append(key, value);
       });
     
-      fetch("https://script.google.com/macros/s/AKfycbxt0svxEBmw8cmK8-O3wvtdfdWPVvZMU1usrZI2fdSKBohqYG3CgWPsM7GlTIfXjac3/exec", {
+      fetch(scriptURL, {
         method: "POST",
-        body: params
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: params.toString()
       })
       .then(response => response.text())
       .then(() => {
@@ -130,12 +133,14 @@
         form.reset();
       })
       .catch(err => alert("Error: " + err));
+
     });
 
   </script>
 
 </body>
 </html>
+
 
 
 
