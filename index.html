@@ -3,30 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Invitation</title>
+  <title>Damia & Fauzan Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #f8f5f0;
+      background: linear-gradient(to bottom, #fef6f0, #f7e9f0);
       color: #3a3a3a;
     }
     .hero {
       text-align: center;
       padding: 60px 20px;
-      background: url('https://images.unsplash.com/photo-1529634806980-8e1130fb6de4?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
-      color: white;
+      background: linear-gradient(to bottom right, #fddde6, #fbe6d6);
+      color: #3a3a3a;
       position: relative;
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.45);
+      border-radius: 0 0 50% 50% / 10%;
     }
     .hero-content {
       position: relative;
@@ -113,40 +106,39 @@
 </head>
 <body>
   <div class="hero">
-    <div class="overlay"></div>
     <div class="hero-content">
       <h1>You're Invited</h1>
       <p>To the Wedding of</p>
-      <h1 style="font-size: 50px;">[Bride] & [Groom]</h1>
+      <h1 style="font-size: 50px;">Damia & Fauzan</h1>
     </div>
   </div>
 
   <div class="section">
     <div class="details-card">
       <h2>Event Details</h2>
-      <p>Date: <strong>25 January 2026</strong></p>
-      <p>Venue: <strong>[Venue Name, City]</strong></p>
-      <p>Dress Code: <strong>Elegant / Pastel</strong></p>
+      <p>Date: <strong>22 November 2026, 10:00 AM</strong></p>
+      <p>Venue: <strong>The Ark Event, Lumut</strong></p>
+      <p>Dress Code: <strong>Batik (Men), Kurung (Women)</strong></p>
       <p class="countdown" id="countdown"></p>
 
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3994.3216627606996!2d100.61535727638486!3d4.197360693995357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdd06dd37e2a4d%3A0x5fc0b0d92e0a4516!2sThe%20Ark%20Event!5e0!3m2!1sen!2smy!4v1701931572148!5m2!1sen!2smy" allowfullscreen="" loading="lazy"></iframe>
 
-      <a class="rsvp-btn" href="https://docs.google.com/forms/..." target="_blank">RSVP Now</a>
+      <a class="rsvp-btn" href="https://fauzandamia-wedding.github.io/invite/rsvp" target="_blank">RSVP Now</a>
     </div>
 
     <h2>Our Story</h2>
     <p>A little glimpse of our journey.</p>
     <div class="carousel">
-      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=60" />
-      <img src="https://images.unsplash.com/photo-1529634806980-8e1130fb6de4?auto=format&fit=crop&w=600&q=60" />
-      <img src="https://images.unsplash.com/photo-1521540216272-a50305cd4421?auto=format&fit=crop&w=600&q=60" />
+      <img src="https://hips.hearstapps.com/hmg-prod/images/wedding-wishes-bride-and-groom-surrounded-by-their-friends-66abb2eac5cde.jpg" />
+      <img src="https://b3031951.smushcdn.com/3031951/wp-content/uploads/2020/03/LA-430-scaled.jpg" />
+      <img src="https://www.penangweddingtourism.gov.my/wp-content/uploads/2020/07/malay-wedding-momento-weddings.jpg" />
     </div>
 
-    <a class="share-btn" href="https://wa.me/?text=You're%20invited%20to%20our%20wedding!%20Link:%20[LINK]" target="_blank">Share on WhatsApp</a>
+    <a class="share-btn" href="https://wa.me/?text=You're%20invited%20to%20the%20wedding%20of%20Damia%20%26%20Fauzan!%20Link:%20https://fauzandamia-wedding.github.io/invite" target="_blank">Share on WhatsApp</a>
   </div>
 
   <script>
-    const weddingDate = new Date("2026-01-25T00:00:00").getTime();
+    const weddingDate = new Date("2026-11-22T10:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
       const diff = weddingDate - now;
