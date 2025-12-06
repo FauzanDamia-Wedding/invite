@@ -5,97 +5,185 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Damia & Fauzan Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    /* Theme variables */
+    :root{
+      --bg:#faf7f2;
+      --accent:#b89a78; /* warm gold */
+      --muted:#8b5e3c;
+      --text:#3b2b20; /* dark brown for headings/body replacing black */
+      --card-bg: rgba(255,255,255,0.6);
+      --card-blur: 6px;
+      --hero-height: 100vh;
+      --max-width: 900px;
+      --shadow-rgb: 59,42,34; /* used for rgba(...) shadows instead of black */
+    }
+
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #faf7f2;
-      color: #3a3a3a;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-
-    /* Welcome Hero */
+    /* ---------- WELCOME HERO (Elegant) ---------- */
     .welcome-hero {
+      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: var(--hero-height);
+      padding: 32px;
+      overflow: hidden;
       text-align: center;
-      height: 100vh;
-      background: linear-gradient(to bottom, #fcefe6, #f7e6f0);
-      color: #3a3a3a;
-      padding: 20px;
+      color: var(--text);
     }
 
+    /* layered background: subtle gradient + soft radial highlights + vignette */
+    .welcome-hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(800px 400px at 10% 20%, rgba(248,235,228,0.6), transparent 10%),
+        radial-gradient(700px 350px at 90% 80%, rgba(247,233,242,0.5), transparent 12%),
+        linear-gradient(180deg, #fffaf8 0%, #fbf5f2 40%, #f7ecf1 100%);
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: normal;
+    }
+    /* vignette (brown-toned) */
+    .welcome-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(var(--shadow-rgb),0.04) 100%);
+      z-index: 1;
+      pointer-events:none;
+    }
+
+    /* frosted content panel */
+    .welcome-content {
+      position: relative;
+      z-index: 2;
+      width: min(920px, 95%);
+      padding: 48px;
+      border-radius: 18px;
+      background: var(--card-bg);
+      -webkit-backdrop-filter: blur(var(--card-blur));
+      backdrop-filter: blur(var(--card-blur));
+      box-shadow: 0 12px 40px rgba(20,18,16,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center;
+      animation: heroEntrance 900ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    @keyframes heroEntrance{
+      from { opacity:0; transform: translateY(10px) scale(0.997); }
+      to   { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    /* Typographic scale (responsive) */
     .welcome-content h1 {
       font-family: "Playfair Display", serif;
-      font-size: 60px;
-      margin: 10px 0;
+      font-weight: 700;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--text); /* ensure dark brown, not black */
     }
 
     .welcome-content h2 {
       font-family: "Playfair Display", serif;
-      font-size: 36px;
-      margin: 10px 0;
-    }
-
-    .welcome-content p {
-      font-size: 22px;
-      margin: 5px 0;
-    }
-
-    /* Countdown Badge Styling */
-    .countdown {
-      font-size: 28px;
       font-weight: 600;
-      margin-top: 25px;
+      font-size: clamp(18px, 2.2vw, 28px);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .welcome-meta {
+      font-size: clamp(14px, 1.7vw, 20px);
+      color: rgba(59,42,34,0.85); /* brown tone */
+      margin-top: 6px;
+      line-height: 1.25;
+    }
+
+    /* glassy countdown */
+    .countdown {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 14px;
       font-family: "Playfair Display", serif;
-      background: #fdf0e6;
-      color: #8b5e3c;
-      padding: 15px 30px;
-      border-radius: 40px;
+      color: var(--muted);
+      padding: 12px 28px;
+      border-radius: 999px;
       display: inline-block;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,246,243,0.6));
+      border: 1px solid rgba(160,140,120,0.12);
+      box-shadow: 0 6px 18px rgba(22,18,15,0.06);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .countdown strong { font-weight:700; color: var(--text); } /* dark brown */
+
+    .countdown:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(22,18,15,0.08);
     }
 
-    .countdown:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-
-    /* Scroll Hint Styling */
+    /* refined scroll hint */
     .scroll-hint {
-      margin-top: 40px;
-      font-family: "Poppins", sans-serif;
-      font-size: 16px;
-      color: #8b5e3c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: bounce 2s infinite;
+      margin-top: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chevrons {
+      display:flex;
+      flex-direction:column;
+      gap: 3px;
+      margin-top:6px;
+      opacity: .9;
+    }
+    .chevrons span{
+      display:block;
+      font-size:18px;
+      transform: translateY(0);
+      animation: chevrons 1.5s infinite;
+      line-height:1;
+      color: rgba(59,42,34,0.85); /* brown chevrons */
+    }
+    .chevrons span:nth-child(2){ animation-delay: .15s; opacity: .85; }
+    .chevrons span:nth-child(3){ animation-delay: .3s; opacity: .7; }
+    @keyframes chevrons {
+      0% { transform: translateY(0); opacity: 0; }
+      30% { transform: translateY(6px); opacity: 1; }
+      60% { transform: translateY(12px); opacity: .6; }
+      100% { transform: translateY(18px); opacity: 0; }
     }
 
-    .scroll-hint .arrow {
-      font-size: 28px;
-      margin-top: 5px;
+    /* responsive adjustments */
+    @media (max-width:520px){
+      .welcome-content { padding: 28px; border-radius: 14px; }
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(10px); }
-      60% { transform: translateY(5px); }
-    }
-
-    /* Event Details Card */
+    /* ---------- REST OF PAGE ---------- */
     .section {
       padding: 50px 20px;
-      max-width: 900px;
+      max-width: var(--max-width);
       margin: auto;
       text-align: center;
     }
@@ -104,18 +192,16 @@
       background: white;
       border-radius: 16px;
       padding: 30px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 20px rgba(59,42,34,0.08); /* brown-toned shadow */
       margin-bottom: 50px;
     }
 
-    .details-card p {
-      line-height: 1.6;
-    }
+    .details-card p { line-height: 1.6; color: var(--text); }
 
     .rsvp-btn {
       display: inline-block;
       margin-top: 10px;
-      background: #b89a78;
+      background: var(--accent);
       color: white;
       padding: 10px 20px;
       border-radius: 30px;
@@ -123,45 +209,57 @@
       font-weight: 500;
       transition: 0.3s;
     }
+    .rsvp-btn:hover { background: #9c8364; }
 
-    .rsvp-btn:hover {
-      background: #9c8364;
+    /* semantic divider (brown-toned) */
+    hr.divider {
+      border: none;
+      height: 1px;
+      width: 60%;
+      margin: 22px auto;
+      background: linear-gradient(to right, rgba(59,42,34,0), rgba(59,42,34,0.18), rgba(59,42,34,0));
     }
-    
-    .divider {
-      width: 100%;
-      max-width: 100%;
-      height: 5px;
-      background: black;
-      margin: 15px 0;
+    hr.divider.thick {
+      height: 4px;
+      width: 80%;
+      background: linear-gradient(90deg, rgba(184,154,120,0), rgba(184,154,120,0.9), rgba(184,154,120,0));
+      border-radius: 2px;
     }
-    
+
   </style>
 </head>
 <body>
-  <!-- Welcome Section -->
-  <div class="welcome-hero">
+  <!-- Welcome Section (semantic banner) -->
+  <header class="welcome-hero" role="banner" aria-label="Welcome">
     <div class="welcome-content">
-      <h2>WALIMATUL URUS</h2>
-      <h1>DAMIA &<br>FAUZAN</h1>
-      <p>JULAI<br>SABTU 22 2026</p>
-      <p>THE ARK EVENT, LUMUT</p>
+      <h2 class="sr-only" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Damia and Fauzan wedding</h2>
+
+      <h2 aria-hidden="true">WALIMATUL URUS</h2>
+
+      <!-- REVERTED: original heading layout with ampersand -->
+      <h1>
+        DAMIA &<br>FAUZAN
+      </h1>
+
+      <p class="welcome-meta" aria-hidden="true">JULAI · SABTU 22 2026 — THE ARK EVENT, LUMUT</p>
 
       <!-- Countdown Badge -->
-      <div class="countdown" id="countdown"></div>
+      <div class="countdown" id="countdown" aria-live="polite"></div>
 
       <!-- Scroll Down Hint -->
-      <div class="scroll-hint">
-       <a href="#details-section" style="text-decoration:none; color:#8b5e3c;">
-        <span>Scroll down</span>
-        <div class="arrow">&#8595;</div>
-       </a>
-      </div>
+      <a class="scroll-hint" href="#details-section" style="text-decoration:none; color:inherit;" aria-label="Scroll to details">
+        <span style="font-size:13px; color:var(--muted);">Scroll for details</span>
+        <div class="chevrons" aria-hidden="true">
+          <span>⌄</span>
+          <span>⌄</span>
+          <span>⌄</span>
+        </div>
+      </a>
     </div>
-  </div>
+  </header>
 
   <!-- Event Details Section -->
-  <div class="section" id="details-section">
+  <main class="section" id="details-section" role="main">
     <div class="details-card">
       <!-- Parents -->
       <p><strong style="font-size: 20px;">Khiruddin Bin Zakaria</strong><br>
@@ -172,34 +270,34 @@
       <p>Dengan penuh kesyukuran ke hadrat ilahi,<br>
       Dato'/Datin/Prof./Prof. Madya/Dr./Tuan/Puan/Encik/Cik</p>
 
-      <div class="divider"></div>
+      <hr class="divider">
 
       <p>ke majlis perkahwinan puteri kami<br>
       <strong style="font-size: 24px;">Khalisah Damia Widad binti Khiruddin</strong><br>
       dengan pilihan hatinya<br>
       <strong style="font-size: 24px;">Muhammad Fauzan bin Azahar</strong></p>
 
-      <div class="divider"></div>
+      <hr class="divider">
 
       <p>Ahad 11 November 2026<br>
-      Ark Event, Lumut 
+      Ark Event, Lumut
       <a class="rsvp-btn" href="https://maps.app.goo.gl/Enr8AxnpWp4AxpF96" target="_blank" style="margin-left:10px;">Google Map</a><br>
       Dress Code: Batik (Men), Kurung (Women)</p>
 
-      <div class="divider"></div>
+      <hr class="divider thick">
 
-
-      <!-- Schedule -->
-      <strong>Aturcara Majlis</strong><br>
-      11.00 AM - 4.00 PM<br>
-      <strong>Ketibaan Pengantin</strong><br> 
-      12.30 PM <br>
-      🌸<br>
-      <em>"dan kami jadikan kamu berpasang-pasangan"</em><br>
-      <em>Surah An-Naba'78:8</em>
+      <!-- Schedule (wrapped correctly) -->
+      <p>
+        <strong>Aturcara Majlis</strong><br>
+        11.00 AM - 4.00 PM<br>
+        <strong>Ketibaan Pengantin</strong><br>
+        12.30 PM <br>
+        🌸<br>
+        <em>"dan kami jadikan kamu berpasang-pasangan"</em><br>
+        <em>Surah An-Naba'78:8</em>
       </p>
     </div>
-  </div>
+  </main>
 
   <script>
     const weddingDate = new Date("2026-11-22T10:00:00").getTime();
@@ -207,8 +305,11 @@
       const now = new Date().getTime();
       const diff = weddingDate - now;
 
+      const countdownEl = document.getElementById("countdown");
+      if (!countdownEl) return;
+
       if(diff <= 0){
-        document.getElementById("countdown").innerHTML = "The wedding is here!";
+        countdownEl.innerHTML = "The wedding is here!";
         return;
       }
 
@@ -217,11 +318,9 @@
       const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
       const secs = Math.floor((diff % (1000*60)) / 1000);
 
-      document.getElementById("countdown").innerHTML =
+      countdownEl.innerHTML =
         `<strong>${days}d ${hours}h ${mins}m ${secs}s</strong> until the wedding`;
     }, 1000);
   </script>
 </body>
 </html>
-
-
