@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP</title>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #faf7f2;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      background: #fff;
+      padding: 28px 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #c49a6c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #ad885e;
+    }
+
+    #success {
+      margin-top: 20px;
+      color: green;
+      font-weight: 600;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>RSVP</h2>
+    <p>Please confirm your attendance</p>
+
+    <form id="rsvpForm">
+      <label>Name</label>
+      <input type="text" id="name" required>
+
+      <label>Number of Guests</label>
+      <input type="number" id="guests" min="1" required>
+
+      <label>Attendance</label>
+      <select id="attendance" required>
+        <option value="">-- Please Select --</option>
+        <option value="Yes">Yes, I will attend</option>
+        <option value="No">No, I cannot attend</option>
+      </select>
+
+      <button type="submit">Submit RSVP</button>
+    </form>
+
+    <div id="success">Your RSVP has been submitted. Thank you!</div>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxKn0Gnr6G__MUNQeRc8YeJZCNpET2mVeaFUueJTaLaGmVYBOcy2YByXGX9nYokrHh9/exec";
+
+    document.getElementById("rsvpForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        guests: document.getElementById("guests").value,
+        attendance: document.getElementById("attendance").value,
+      };
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+      })
+      .then(() => {
+        document.getElementById("success").style.display = "block";
+        document.getElementById("rsvpForm").reset();
+      })
+      .catch((err) => alert("Error: " + err.message));
+    });
+  </script>
+
+</body>
+</html>
