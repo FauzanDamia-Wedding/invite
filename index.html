@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f8f5f0;
+      color: #3a3a3a;
+    }
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: url('https://images.unsplash.com/photo-1529634806980-8e1130fb6de4?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
+      color: white;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .details-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .countdown {
+      font-size: 28px;
+      font-weight: 600;
+      margin-top: 20px;
+      font-family: "Playfair Display", serif;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .rsvp-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #b89a78;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .rsvp-btn:hover {
+      background: #9c8364;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: scroll;
+      gap: 12px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    .carousel img {
+      width: 280px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .share-btn {
+      background: #25d366;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 25px;
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>You're Invited</h1>
+      <p>To the Wedding of</p>
+      <h1 style="font-size: 50px;">[Bride] & [Groom]</h1>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="details-card">
+      <h2>Event Details</h2>
+      <p>Date: <strong>25 January 2026</strong></p>
+      <p>Venue: <strong>[Venue Name, City]</strong></p>
+      <p>Dress Code: <strong>Elegant / Pastel</strong></p>
+      <p class="countdown" id="countdown"></p>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>
+
+      <a class="rsvp-btn" href="https://docs.google.com/forms/..." target="_blank">RSVP Now</a>
+    </div>
+
+    <h2>Our Story</h2>
+    <p>A little glimpse of our journey.</p>
+    <div class="carousel">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=60" />
+      <img src="https://images.unsplash.com/photo-1529634806980-8e1130fb6de4?auto=format&fit=crop&w=600&q=60" />
+      <img src="https://images.unsplash.com/photo-1521540216272-a50305cd4421?auto=format&fit=crop&w=600&q=60" />
+    </div>
+
+    <a class="share-btn" href="https://wa.me/?text=You're%20invited%20to%20our%20wedding!%20Link:%20[LINK]" target="_blank">Share on WhatsApp</a>
+  </div>
+
+  <script>
+    const weddingDate = new Date("2026-01-25T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const secs = Math.floor((diff % (1000*60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + mins + "m " + secs + "s ";
+    }, 1000);
+  </script>
+</body>
+</html>
