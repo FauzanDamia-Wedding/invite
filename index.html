@@ -31,6 +31,15 @@
     }
 
     /* ---------- WELCOME HERO (Elegant) ---------- */
+    
+
+    .top-banner {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 10 px;
+    }
+
     .welcome-hero {
       position: relative;
       display: flex;
@@ -225,15 +234,75 @@
       background: linear-gradient(90deg, rgba(184,154,120,0), rgba(184,154,120,0.9), rgba(184,154,120,0));
       border-radius: 2px;
     }
+    
+    .creative-date {
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.creative-date .month {
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.creative-date .date-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  gap: 15px;
+}
+
+.creative-date .line {
+  flex: 1;
+  height: 2px;
+  background: black;
+  max-width: 80px; /* Prevents from becoming too long on big screens */
+}
+
+.creative-date .date-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.creative-date .day {
+  font-size: 16px;
+}
+
+.creative-date .number {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.creative-date .year {
+  font-size: 16px;
+}
+
+.creative-date .venue {
+  margin-top: 6px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 
   </style>
 </head>
 <body>
+    
   <!-- Welcome Section (semantic banner) -->
   <header class="welcome-hero" role="banner" aria-label="Welcome">
     <div class="welcome-content">
+   
       <h2 class="sr-only" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Damia and Fauzan wedding</h2>
-
+      <img 
+       src="https://i.imgur.com/GRrV78N.png"
+       alt="Wedding Header"
+       class="top-banner"
+      />   
       <h2 aria-hidden="true">WALIMATUL URUS</h2>
 
       <!-- REVERTED: original heading layout with ampersand -->
@@ -241,7 +310,24 @@
         DAMIA &<br>FAUZAN
       </h1>
 
-      <p class="welcome-meta" aria-hidden="true">JULAI · SABTU 22 2026 — THE ARK EVENT, LUMUT</p>
+      <div class="creative-date">
+        <div class="month">JULAI</div>
+    
+        <div class="date-box">
+          <div class="line"></div>
+    
+          <div class="date-content">
+            <div class="day">SABTU</div>
+            <div class="number">22</div>
+            <div class="year">2026</div>
+          </div>
+    
+          <div class="line"></div>
+        </div>
+    
+      <div class="venue">THE ARK EVENT, LUMUT</div>
+    </div>
+
 
       <!-- Countdown Badge -->
       <div class="countdown" id="countdown" aria-live="polite"></div>
@@ -324,5 +410,6 @@
   </script>
 </body>
 </html>
+
 
 
